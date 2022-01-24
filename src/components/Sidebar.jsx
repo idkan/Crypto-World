@@ -52,7 +52,7 @@ const Sidebar = () => {
                         <span className="flex font-medium text-sm text-gray-500 px-4 my-4 uppercase justify-center">Crypto Data</span>
                     </li>
                     {sidebarItems.map((item, i) => (
-                        <li className="my-px">
+                        <li className="my-px" key={i}>
                             <Link to={item.link} className="flex flex-row items-center h-10 px-3 rounded-lg text-gray-300 hover:bg-gray-100 hover:text-gray-700" >
                                 <span className="flex items-center justify-center text-lg text-gray-400" >
                                     {parse(item.icon)}
