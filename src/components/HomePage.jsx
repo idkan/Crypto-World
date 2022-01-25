@@ -20,7 +20,7 @@ const HomePage = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
                         <div className="flex flex-col justify-center border-2 border-gray-300 rounded-xl p-6 bg-gray-100">
                             <h2>Total Cryptocurrencies</h2>
-                            <span>{globalStats.total}</span>
+                            <span>{(globalStats.total).toLocaleString()}</span>
                         </div>
                         <div className="flex flex-col justify-center border-2 border-gray-300 rounded-xl p-6 bg-gray-100">
                             <h2>Total Exchanges</h2>
