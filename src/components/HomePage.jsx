@@ -3,10 +3,11 @@ import millify from 'millify';
 import { Link } from 'react-router-dom';
 
 import { useGetCryptosQuery } from '../services/cryptoApi';
-import { Cryptocurrencies, LoadingButton, News,  } from '.';
+
+import { Cryptocurrencies, LoadingButton, News } from '.';
 
 const HomePage = () => {
-    const { data, isFetching } = useGetCryptosQuery();
+    const { data, isFetching } = useGetCryptosQuery(10);
     const globalStats = data?.data?.stats;
 
     if (isFetching) return (<LoadingButton />);

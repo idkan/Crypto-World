@@ -4,19 +4,26 @@ import { Link } from 'react-router-dom';
 
 import { useGetCryptosQuery } from '../services/cryptoApi';
 
-const Cryptocurrencies = () => {
-    const { data: cryptosList, isFetching } = useGetCryptosQuery();
+import { LoadingButton } from '.';
+
+const Cryptocurrencies = ({ simplified }) => {
+    const count = simplified ? 10 : 100;
+    const { data: cryptosList, isFetching } = useGetCryptosQuery(count);
     const [cryptos, setCryptos] = useState(cryptosList?.data?.coins);
 
-    console.log(cryptos);
+    if (isFetching) return (<LoadingButton />);
+
+    const containerClasses = !simplified ? 'flex flex-col flex-grow border-4 border-gray-400 border-dashed bg-white rounded mt-4' : 'flex flex-col flex-grow bg-white rounded mt-4';
 
     return (
         <>
             <div className="main-content flex flex-col flex-grow p-4">
-                <h1 className="font-bold text-2xl text-gray-700">Cryptocurrencies</h1>
-                <div className="flex flex-col flex-grow border-4 border-gray-400 border-dashed bg-white rounded mt-4" >
+                {!simplified && (
+                    <h1 className="font-bold text-2xl text-gray-700">Cryptocurrencies</h1>
+                )}
+                <div className={containerClasses} >
                     <div className="grid mb-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
-                        {cryptos.map((crypto, i) => (
+                        {cryptos?.map((crypto, i) => (
                             <Link to={`/crypto/${crypto.uuid}`} key={crypto.uuid}>
                                 <div className="max-w-md py-4 px-8 bg-white shadow-lg rounded-lg my-20 ">
                                     <div className="flex justify-center md:justify-end -mt-16">
