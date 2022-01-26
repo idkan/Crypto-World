@@ -57,7 +57,6 @@ const Cryptocurrencies = ({ simplified }) => {
                                     </div>
                                 </div>
                             </Link>
-
                         ))}
                     </div>
                 </div>
