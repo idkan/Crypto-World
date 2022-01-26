@@ -7,6 +7,7 @@ import { Sidebar, HomePage, Cryptocurrencies, CryptoDetails, Exchanges, News, Fo
 
 const App = () => {
     return (
+        // TODO: Fix sidebar and main content width
         <div className="app flex flex-row min-h-screen bg-gray-100 text-gray-800">
             <Sidebar />
             <main className="main flex flex-col flex-grow -ml-80 md:ml-0 transition-all duration-150 ease-in">

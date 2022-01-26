@@ -29,6 +29,7 @@ const News = ({ simplified }) => {
                     <div className="grid mb-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
                         {cryptoNews.value.map((news, i) => (
                             <div tabIndex="0" className="rounded-3xl border shadow-md hover:shadow-lg focus:outline-none" aria-label={"New " + i} key={i}>
+                                {/* TODO: Fix image size */}
                                 <img role="img" aria-label="code editor" tabIndex="0" className="focus:outline-none w-full" src={news?.image?.thumbnail?.contentUrl || demoImage } alt="Crypto News" />
                                 <div className="py-4 px-8 w-full flex justify-between bg-indigo-700">
                                     <p tabIndex="0" className="focus:outline-none text-sm text-white font-semibold tracking-wide">{news.provider[0].name}</p>
@@ -40,7 +41,7 @@ const News = ({ simplified }) => {
                                     <div className="w-full flex justify-end" >
                                         <a href={news.url} target='_blank' rel="noreferrer" className="focus:outline-none focus:ring-2 ring-offset-2 focus:ring-gray-600 hover:opacity-75 mt-4 justify-end flex items-center cursor-pointer">
                                             <span className=" text-base tracking-wide text-indigo-700">Read more</span>
-                                            <svg className="ml-3 lg:ml-6 text-indigo-700" xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18" fill="none">
+                                            <svg className="ml-3 lg:ml-6 text-indigo-700" width="20" height="18" viewBox="0 0 20 18" fill="none">
                                                 <path d="M11.7998 1L18.9998 8.53662L11.7998 16.0732" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
                                                 <path d="M1 8.53662H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path>
                                             </svg>
