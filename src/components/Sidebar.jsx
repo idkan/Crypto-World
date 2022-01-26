@@ -27,7 +27,7 @@ const sidebarItems = [
 
 const Sidebar = () => {
     return (
-        <aside className="sidebar w-96 md:shadow transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-gray-200" >
+        <aside className="sidebar w-3/12 md:shadow transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-gray-200" >
             <div className="sidebar-header flex items-center justify-center py-4">
                 <div className="inline-flex">
                     <Link to="/" className="inline-flex flex-row items-center">

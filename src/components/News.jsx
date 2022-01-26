@@ -6,7 +6,6 @@ import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
 
 import { LoadingButton } from '.';
 
-
 const demoImage = 'https://www.bing.com/th?id=OVFT.mpzuVZnv8dwIMRfQGPbOPC&pid=News';
 
 const News = ({ simplified }) => {
@@ -19,6 +18,12 @@ const News = ({ simplified }) => {
     const containerClasses = !simplified ? 'border-4 border-gray-400 border-dashed' : '';
     const paddingContainer = !simplified ? 'p-4' : '';
 
+    // TODO: Refactor 
+    function convertToDate(unixTime) {
+        var dateObject = new Date(unixTime);
+        return dateObject.toLocaleString("en-US");
+    }
+
     return (
         <>
             <div className={"crypto-content flex flex-col flex-grow " + paddingContainer}>
@@ -30,10 +35,10 @@ const News = ({ simplified }) => {
                         {cryptoNews.value.map((news, i) => (
                             <div tabIndex="0" className="rounded-3xl border shadow-md hover:shadow-lg focus:outline-none" aria-label={"New " + i} key={i}>
                                 {/* TODO: Fix image size */}
-                                <img role="img" aria-label="code editor" tabIndex="0" className="focus:outline-none w-full" src={news?.image?.thumbnail?.contentUrl || demoImage } alt="Crypto News" />
-                                <div className="py-4 px-8 w-full flex justify-between bg-indigo-700">
-                                    <p tabIndex="0" className="focus:outline-none text-sm text-white font-semibold tracking-wide">{news.provider[0].name}</p>
-                                    <p tabIndex="0" className="focus:outline-none text-sm text-white font-semibold tracking-wide">{(Date.parse(news?.datePublished))}</p>
+                                <img role="img" aria-label="code editor" tabIndex="0" className="rounded-t-3xl focus:outline-none w-full" src={news?.image?.thumbnail?.contentUrl || demoImage } alt="Crypto News" />
+                                <div className="py-4 px-8 w-full flex justify-between bg-gray-200">
+                                    <p tabIndex="0" className="focus:outline-none text-sm text-black font-semibold tracking-wide">{news.provider[0].name}</p>
+                                    <p tabIndex="0" className="focus:outline-none text-sm text-black font-semibold tracking-wide">{(convertToDate(news?.datePublished))}</p>
                                 </div>
                                 <div className="bg-white px-10 py-6 rounded-bl-3xl rounded-br-3xl">
                                     <h1 tabIndex="0" className="focus:outline-none text-xl text-gray-900 font-semibold tracking-wider">{news.name}</h1>
