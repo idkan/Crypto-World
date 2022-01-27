@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
 import { LoadingButton } from '.';
+import moment from 'moment';
 
 const demoImage = 'https://www.bing.com/th?id=OVFT.mpzuVZnv8dwIMRfQGPbOPC&pid=News';
 
@@ -14,12 +15,6 @@ const News = ({ simplified }) => {
 
     const containerClasses = !simplified ? 'border-4 border-gray-400 border-dashed' : '';
     const paddingContainer = !simplified ? 'p-4' : '';
-
-
-    function convertToDate(unixTime) {
-        var dateObject = new Date(unixTime);
-        return dateObject.toLocaleString("en-US");
-    }
 
     return (
         <>
@@ -34,13 +29,18 @@ const News = ({ simplified }) => {
                                 <img role="img" aria-label="code editor" tabIndex="0" className="h-40 rounded-sm my-2 mx-auto" src={news?.image?.thumbnail?.contentUrl || demoImage} alt="Crypto News" />
                                 <div className="py-4 px-4 w-full flex justify-between bg-gray-200">
                                     <p tabIndex="0" className="focus:outline-none text-sm text-black font-semibold ">{news.provider[0].name}</p>
-                                    <p tabIndex="0" className="focus:outline-none text-sm text-black font-semibold ">{(convertToDate(news?.datePublished))}</p>
                                 </div>
                                 <div className="bg-white px-4 py-4 rounded-bl-3xl rounded-br-3xl">
                                     <h1 tabIndex="0" className="focus:outline-none text-xl text-gray-900 font-semibold ">{news.name}</h1>
                                     <p tabIndex="0" className="focus:outline-none text-gray-700 text-base lg:leading-8 mt-6 w-full">
                                         {news.description > 100 ? `${news.description.substring(0, 100)}...` : news.description}
                                     </p>
+                                    <div className="flex content-center items-center justify-between mt-8">
+                                        <img role="img" aria-label="code editor" tabIndex="0" className="h-8 rounded-full" src={news?.provider[0].image?.thumbnail?.contentUrl || demoImage} alt="Crypto News" />
+                                        <p tabIndex="0" className="focus:outline-none text-gray-500 text-base ml-4 lg:leading-8">
+                                            {moment(news.datePublished).startOf('ss').fromNow()}
+                                        </p>
+                                    </div>
                                 </div>
                             </a>
                         ))}
