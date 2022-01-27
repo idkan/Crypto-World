@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import millify from 'millify';
 import { Link } from 'react-router-dom';
+import millify from 'millify';
 
 import { useGetCryptosQuery } from '../services/cryptoApi';
-
 import { LoadingButton } from '.';
 
 const Cryptocurrencies = ({ simplified }) => {
