@@ -45,7 +45,7 @@ const Cryptocurrencies = ({ simplified }) => {
                     <div className="grid mb-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
                         {cryptos?.map((crypto, i) => (
                             <Link to={`/crypto/${crypto.uuid}`} key={crypto.uuid} className="grid">
-                                <div className="max-w-md py-4 px-8 bg-white rounded-3xl border shadow-md hover:shadow-lg mt-16 self-center justify-center w-full">
+                                <div className="max-w-md py-4 px-8 bg-white rounded-3xl border hover:shadow-lg mt-16 self-center justify-center w-full">
                                     <div className="flex justify-center md:justify-end -mt-16">
                                         <img className="w-20 h-20 object-cover rounded-full" src={crypto.iconUrl} alt={crypto.name} />
                                     </div>
