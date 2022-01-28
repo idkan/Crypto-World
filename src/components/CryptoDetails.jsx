@@ -43,7 +43,7 @@ const CryptoDetails = () => {
                         <h2 className="text-4xl text-center mb-4 font-semibold font-heading">{cryptoDetails.name} ({cryptoDetails.symbol}) Price</h2>
                         <p className="text-center">
                             {cryptoDetails.name} live price in US Dollar (USD). View value statistics, market cap and supply.
-                            <a className="ml-1 text-indigo-600 hover:underline" href={cryptoDetails.websiteUrl} target="_blank" >{cryptoDetails.name} Web Page</a>
+                            <a className="ml-1 text-indigo-600 hover:underline" href={cryptoDetails.websiteUrl} target="_blank" rel="noreferrer">{cryptoDetails.name} Web Page</a>
                         </p>
                         <hr className="my-4" />
                         <select
@@ -76,9 +76,16 @@ const CryptoDetails = () => {
                                     ))}
                                 </ul>
                             </div>
-
                         </div>
-
+                        <hr className="my-4" />
+                        <h2 className="text-4xl text-left mb-4 font-semibold font-heading">What is {cryptoDetails.name} ({cryptoDetails.symbol})?</h2>
+                        <div className="text-center">
+                            <img src={cryptoDetails.iconUrl} alt={cryptoDetails.name} className='h-40 mx-auto my-4 md:h-80' />
+                        </div>
+                        <p className="text-left">
+                            {cryptoDetails.name} live price in US Dollar (USD). View value statistics, market cap and supply.
+                            {HTMLReactParser(cryptoDetails.description)}
+                        </p>
                     </article>
                 </div>
             </div>
