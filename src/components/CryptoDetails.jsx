@@ -25,11 +25,11 @@ const CryptoDetails = () => {
     ];
 
     const genericStats = [
-        { title: 'Number Of Markets', value: cryptoDetails?.numberOfMarkets },
-        { title: 'Number Of Exchanges', value: cryptoDetails?.numberOfExchanges },
-        { title: 'Aprroved Supply', value: cryptoDetails?.supply?.confirmed },
-        { title: 'Total Supply', value: `$ ${cryptoDetails?.supply?.total && millify(cryptoDetails?.supply?.total)}` },
-        { title: 'Circulating Supply', value: `$ ${cryptoDetails?.supply?.circulating && millify(cryptoDetails?.supply?.circulating)}` },
+        { title: 'Number Of Markets', value: cryptoDetails?.numberOfMarkets.toLocaleString(), icon: <svg className="mr-1 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg> },
+        { title: 'Number Of Exchanges', value: cryptoDetails?.numberOfExchanges.toLocaleString(), icon: <svg className="mr-1 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" /></svg> },
+        { title: 'Aprroved Supply', value: cryptoDetails?.supply?.confirmed ? <svg className="mr-1 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg> : <svg className="mr-1 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>, icon: <svg className="mr-1 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> },
+        { title: 'Total Supply', value: `$ ${cryptoDetails?.supply?.total && millify(cryptoDetails?.supply?.total)}`, icon: <svg className="mr-1 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> },
+        { title: 'Circulating Supply', value: `$ ${cryptoDetails?.supply?.circulating && millify(cryptoDetails?.supply?.circulating)}`, icon: <svg className="mr-1 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> },
     ];
 
     console.log(data);
@@ -51,16 +51,34 @@ const CryptoDetails = () => {
                             className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm md:w-80 focus:ring-1">
                             {time.map((date, i) => <option key={i} value={date}>{date}</option>)}
                         </select>
-                        <h3 className="text-2xl text-center mb-4 font-semibold font-heading">{cryptoDetails.name} Value Statistics.</h3>
-                        <p className="text-center">An overview showing the stats of {cryptoDetails.name}.</p>
-                        <ul className="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
-                            {stats.map(({ title, value, icon, i }) => (
-                                <li className="flex items-center py-3" key={i + title}>
-                                    <span className='flex content-center items-center'>{icon} {title}</span>
-                                    <span className="ml-auto">{value}</span>
-                                </li>
-                            ))}
-                        </ul>
+                        <div className="grid my-8 grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="crypto-details">
+                                <h3 className="text-2xl text-center mb-4 font-semibold font-heading">{cryptoDetails.name} Value Statistics.</h3>
+                                <p className="text-center">An overview showing the stats of {cryptoDetails.name}.</p>
+                                <ul className="bg-gray-200 text-gray-600 hover:text-gray-700 py-2 px-3 mt-3 divide-y rounded shadow-sm">
+                                    {stats.map(({ title, value, icon, i }) => (
+                                        <li className="flex items-center py-3 hover:bg-gray-50 hover:rounded-sm transition-colors" key={i + title}>
+                                            <span className='flex content-center items-center'>{icon} {title}</span>
+                                            <span className="ml-auto">{value}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            <div className="global-details">
+                                <h3 className="text-2xl text-center mb-4 font-semibold font-heading">Global Statistics.</h3>
+                                <p className="text-center">An overview showing the stats of all cryptocurrencies.</p>
+                                <ul className="bg-gray-200 text-gray-600 hover:text-gray-700 py-2 px-3 mt-3 divide-y rounded shadow-sm">
+                                    {genericStats.map(({ title, value, icon, i }) => (
+                                        <li className="flex items-center py-3 hover:bg-gray-50 hover:rounded-sm transition-colors" key={i + title}>
+                                            <span className='flex content-center items-center'>{icon} {title}</span>
+                                            <span className="ml-auto">{value}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                        </div>
+
                     </article>
                 </div>
             </div>
