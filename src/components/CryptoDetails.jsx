@@ -32,8 +32,6 @@ const CryptoDetails = () => {
         { title: 'Circulating Supply', value: `$ ${cryptoDetails?.supply?.circulating && millify(cryptoDetails?.supply?.circulating)}`, icon: <svg className="mr-1 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> },
     ];
 
-    console.log(data);
-
     return (
         <>
             <div className="main-content flex flex-col flex-grow p-4">
@@ -82,10 +80,20 @@ const CryptoDetails = () => {
                         <div className="text-center">
                             <img src={cryptoDetails.iconUrl} alt={cryptoDetails.name} className='h-40 mx-auto my-4 md:h-80' />
                         </div>
-                        <p className="text-left">
-                            {cryptoDetails.name} live price in US Dollar (USD). View value statistics, market cap and supply.
-                            {HTMLReactParser(cryptoDetails.description)}
-                        </p>
+                        <div className="text-left">
+                            <p>{cryptoDetails.name} live price in US Dollar (USD). View value statistics, market cap and supply.</p>
+                            <div className="crypto-description">
+                                {HTMLReactParser(cryptoDetails.description)}
+                            </div>
+                        </div>
+                        <div className="mt-28 text-sm text-gray-400 text-center">
+                            <p className="my-8 md:mt-0"> &copy; {cryptoDetails.name} Links</p>
+                            <div className="grid md:block">
+                                {cryptoDetails?.links?.map((link) => (
+                                    <a className="px-2 md:border-l" href={link.url} target="_blank" rel="noreferrer" key={link.name}>{link.name}</a>
+                                ))}
+                            </div>
+                        </div>
                     </article>
                 </div>
             </div>
