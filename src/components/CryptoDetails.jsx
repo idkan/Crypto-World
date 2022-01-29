@@ -62,6 +62,7 @@ const CryptoDetails = () => {
                                     ))}
                                 </ul>
                             </div>
+                            {/* TODO: Add Chart */}
                             <div className="global-details">
                                 <h3 className="text-2xl text-center mb-4 font-semibold font-heading">Global Statistics.</h3>
                                 <p className="text-center">An overview showing the stats of all cryptocurrencies.</p>
