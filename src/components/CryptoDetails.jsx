@@ -8,13 +8,11 @@ import { LoadingButton } from '.';
 
 const CryptoDetails = () => {
     const { coinId } = useParams();
-    const [timePeriod, setTimePeriod] = useState('7d');
     const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
     const cryptoDetails = data?.data?.coin;
 
     if (isFetching) return <LoadingButton />;
 
-    const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
 
     const stats = [
         { title: 'Price to USD', value: `$ ${cryptoDetails?.price && millify(cryptoDetails?.price)}`, icon: <svg className="mr-1 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> },
@@ -44,11 +42,6 @@ const CryptoDetails = () => {
                             <a className="ml-1 text-indigo-600 hover:underline" href={cryptoDetails.websiteUrl} target="_blank" rel="noreferrer">{cryptoDetails.name} Web Page</a>
                         </p>
                         <hr className="my-4" />
-                        <select
-                            onChange={(value) => setTimePeriod(value)}
-                            className="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm md:w-80 focus:ring-1">
-                            {time.map((date, i) => <option key={i} value={date}>{date}</option>)}
-                        </select>
                         <div className="grid my-8 grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="crypto-details">
                                 <h3 className="text-2xl text-center mb-4 font-semibold font-heading">{cryptoDetails.name} Value Statistics.</h3>
@@ -62,7 +55,6 @@ const CryptoDetails = () => {
                                     ))}
                                 </ul>
                             </div>
-                            {/* TODO: Add Chart */}
                             <div className="global-details">
                                 <h3 className="text-2xl text-center mb-4 font-semibold font-heading">Global Statistics.</h3>
                                 <p className="text-center">An overview showing the stats of all cryptocurrencies.</p>
