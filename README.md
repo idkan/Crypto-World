@@ -7,7 +7,6 @@ Popular cryptocurrency news.
 * Advanced React Best Practices such as folder & file structure, hooks and refs.
 * Redux Toolkit
 * User Interfaces with Tailwind
-* Chart.js
 * Consume API'S
 
 <!-- CONTACT -->
